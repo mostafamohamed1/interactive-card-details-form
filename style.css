@@ -1,0 +1,254 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+
+:root {
+  --font-family: "Space Grotesk", sans-serif;
+  --font-size: 112.5%;
+
+  --clr-nature-100: white;
+  --clr-nature-300: hsl(270, 3%, 87%);
+  --clr-nature-500: hsl(279, 6%, 55%);
+  --clr-nature-800: hsl(278, 68%, 11%);
+
+  --clr-primary-400: hsl(0, 100%, 66%);
+
+  --gradient-1: linear-gradient(hsl(249, 99%, 64%), hsl(278, 94%, 30%)) 1 1;
+  --box-shadow-1: 0 10px 10px hsla(278, 68%, 11%, 0.176);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: var(--font-size);
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-family);
+  background-image: url(./images/bg-main-mobile.png);
+  background-repeat: no-repeat;
+  background-size: 100% 35%;
+}
+
+main {
+  max-inline-size: 1200px;
+  min-block-size: 100dvh;
+  margin-inline: auto;
+  padding-inline: 0.7rem;
+  padding-block: 1.5rem;
+  display: grid;
+  grid-template-rows: 1.7fr 2fr;
+}
+
+@media (min-width: 992px) {
+  body {
+    background-image: url(./images/bg-main-desktop.png);
+    background-size: 37% 100%;
+  }
+
+  main {
+    padding-inline: 1rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    gap: 4rem;
+  }
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.card__preview {
+  position: relative;
+}
+
+.card__front {
+  --card-padding: calc(1rem - 4px);
+  z-index: 2;
+  top: 35%;
+}
+
+.card__back {
+  right: 0;
+}
+
+.card__front,
+.card__back {
+  position: absolute;
+  width: min-content;
+  color: var(--clr-nature-100);
+}
+
+.card__front > *:not(.card__front-bg),
+.card__back > *:not(.card__back-bg) {
+  position: absolute;
+}
+
+.card__front-bg,
+.card__back-bg {
+  max-width: 15rem;
+}
+
+.card__logo {
+  top: var(--card-padding);
+  left: var(--card-padding);
+  max-width: 3rem;
+}
+
+.card__number {
+  top: 50%;
+  left: var(--card-padding);
+  font-size: 1.21rem;
+}
+
+.card__name {
+  bottom: var(--card-padding);
+  left: var(--card-padding);
+  font-size: 0.7rem;
+}
+
+.card__date {
+  bottom: var(--card-padding);
+  right: var(--card-padding);
+  font-size: 0.7rem;
+}
+
+.card__pin {
+  top: 45%;
+  right: 14%;
+  font-size: 0.7rem;
+}
+
+@media (min-width: 992px) {
+  .card__preview {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .card__front,
+  .card__back {
+    inset: revert;
+    position: relative;
+  }
+
+  .card__back {
+    margin-left: auto;
+  }
+
+  .card__front {
+    --card-padding: calc(2rem - 4px);
+  }
+
+  .card__front-bg,
+  .card__back-bg,
+  .card__logo {
+    max-width: revert;
+  }
+
+  .card__number {
+    font-size: 1.93rem;
+  }
+
+  .card__name,
+  .card__date,
+  .card__pin {
+    font-size: 1rem;
+  }
+}
+
+.form {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.form__control:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.form__control {
+  width: inherit;
+}
+
+.form__control > .card__input {
+  width: 100%;
+}
+
+.form__control label {
+  color: var(--clr-nature-800);
+}
+
+.form__control .card-warn {
+  font-size: 0.6rem;
+  padding-left: 0.3rem;
+  display: inline-block;
+  color: var(--clr-primary-400);
+  visibility: hidden;
+}
+
+.card__input {
+  display: block;
+  padding: 0.6rem 0.7rem;
+  margin-block: 0.5rem 0;
+  border: 1px solid var(--clr-nature-300);
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  font-family: var(--font-family);
+}
+
+.card__input.valid {
+  border-style: solid;
+  border-width: 1px;
+  border-image: var(--gradient-1);
+}
+
+.card__input.invalid {
+  border-color: var(--clr-primary-400);
+}
+
+.card__input:focus {
+  outline: none;
+}
+
+.form__control > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form__control > div > div:first-child,
+.form__control > div > div:last-child {
+  width: 49%;
+}
+
+.form__control > div > div:first-child #card-expire {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form__control > div > div:last-child > .card__input {
+  width: 100%;
+}
+
+.form__control > div > div:first-child #card-expire > .card__input {
+  width: 48%;
+}
+
+.btn {
+  width: 100%;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.8rem 0;
+
+  font-size: 1.2rem;
+  font-family: var(--font-family);
+  background-color: var(--clr-nature-800);
+
+  color: var(--clr-nature-100);
+  cursor: pointer;
+  box-shadow: var(--box-shadow-1);
+}
