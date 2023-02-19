@@ -15,6 +15,15 @@
   --box-shadow-1: 0 10px 10px hsla(278, 68%, 11%, 0.176);
 }
 
+@keyframes moveLeft {
+  0% {
+    transform: translateX(110%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -23,15 +32,15 @@
 
 html {
   box-sizing: border-box;
-  font-size: var(--font-size);
+  font-size: 93.75%;
 }
 
 body {
   min-height: 100vh;
   font-family: var(--font-family);
-  background-image: url(./images/bg-main-mobile.png);
+  background-image: url("./images/bg-main-mobile.png");
   background-repeat: no-repeat;
-  background-size: 100% 35%;
+  /* background-size: 100% 35%; */
 }
 
 main {
@@ -42,12 +51,17 @@ main {
   padding-block: 1.5rem;
   display: grid;
   grid-template-rows: 1.7fr 2fr;
+  gap: 3rem;
+  overflow-x: hidden;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 375px) {
+  html {
+    font-size: var(--font-size);
+  }
   body {
-    background-image: url(./images/bg-main-desktop.png);
-    background-size: 37% 100%;
+    background-image: url("./images/bg-main-desktop.png");
+    /* background-size: 37% 100%; */
   }
 
   main {
@@ -83,6 +97,8 @@ img {
   position: absolute;
   width: min-content;
   color: var(--clr-nature-100);
+  box-shadow: 20px 20px 40px hsla(270, 26%, 7%, 0.2);
+  border-radius: 0.6rem;
 }
 
 .card__front > *:not(.card__front-bg),
@@ -104,7 +120,7 @@ img {
 .card__number {
   top: 50%;
   left: var(--card-padding);
-  font-size: 1.21rem;
+  font-size: 1.1rem;
 }
 
 .card__name {
@@ -125,7 +141,7 @@ img {
   font-size: 0.7rem;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 375px) {
   .card__preview {
     display: grid;
     gap: 2rem;
@@ -152,7 +168,7 @@ img {
   }
 
   .card__number {
-    font-size: 1.93rem;
+    font-size: 1.63rem;
   }
 
   .card__name,
@@ -162,13 +178,21 @@ img {
   }
 }
 
-.form {
+.form,
+.card__message {
   width: 100%;
-  margin: 0 auto;
+}
+
+@media (min-width: 375px) {
+  .form,
+  .card__message {
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 
 .form__control:not(:last-child) {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .form__control {
@@ -181,6 +205,7 @@ img {
 
 .form__control label {
   color: var(--clr-nature-800);
+  font-size: 0.911rem;
 }
 
 .form__control .card-warn {
@@ -199,6 +224,11 @@ img {
   border-radius: 0.3rem;
   font-size: 1rem;
   font-family: var(--font-family);
+  color: var(--clr-nature-800);
+}
+
+.card__input::placeholder {
+  color: var(--clr-nature-300);
 }
 
 .card__input.valid {
@@ -225,30 +255,58 @@ img {
   width: 49%;
 }
 
-.form__control > div > div:first-child #card-expire {
+.form__control > div > div:first-child .card-expire {
   display: flex;
   justify-content: space-between;
 }
 
 .form__control > div > div:last-child > .card__input {
-  width: 100%;
+  width: 99%;
 }
 
-.form__control > div > div:first-child #card-expire > .card__input {
+.form__control > div > div:first-child .card-expire > .card__input {
   width: 48%;
 }
 
 .btn {
   width: 100%;
+
   border: none;
   border-radius: 0.3rem;
-  padding: 0.8rem 0;
-
-  font-size: 1.2rem;
+  padding: 0.6rem 0;
+  font-size: 1.1rem;
   font-family: var(--font-family);
   background-color: var(--clr-nature-800);
-
   color: var(--clr-nature-100);
   cursor: pointer;
   box-shadow: var(--box-shadow-1);
+}
+
+.card__message {
+  text-align: center;
+  animation: moveLeft 0.5s ease-in-out;
+}
+
+.card__icon {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.card__message h1 {
+  color: var(--clr-nature-800);
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.card__message p {
+  color: var(--clr-nature-500);
+  font-weight: 500;
+  font-size: 0.8rem;
+  margin-bottom: 3rem;
+}
+
+.card__message .btn {
+  width: max-content;
+  padding-inline: 7rem;
 }
